@@ -30,6 +30,7 @@
 #dialogBox > div > #dialogBoxFoot{ background: #666; 
   padding: 10px; text-align: right; }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 </head>
 <body>
 <div id="dialogOverlay"></div>
@@ -40,33 +41,36 @@
     <div id="dialogBoxFoot"></div>
   </div>
 </div>
-  <h1>My web document content ... </h1>
+  <h1 id="test">My web document content ... </h1>
   <h2>My web document content ... </h2>
-   <button onclick="Alert.render('This is a cool custom alert box')" id="newAlert">This is a cool custom alert box</button>
+   <button id="newAlert">This is a cool custom alert box</button>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script type="text/javascript">
 function CustomAlert () {
     this.render = function(dialog) {
         var winW = window.innerWidth;
         var winH = window.innerHeight;
-        var dialogOverlay = document.getElementById("dialogOverlay");
-        var dialogBox = document.getElementById("dialogBox");
-        dialogOverlay.style.display = "block";
-        dialogOverlay.style.height = winH + "px";
-        dialogBox.style.left = (winW/2) - (550 * .5) + "px";
-        dialogBox.style.top = "100px";
-        dialogBox.style.display = "block";
-        document.getElementById("dialogBoxHead").innerHTML = "Attention:";
-        document.getElementById("dialogBoxBody").innerHTML = dialog;
-        document.getElementById("dialogBoxFoot").innerHTML = '<button onclick="Alert.ok()">OK</button>';
+        var dialogOverlay = $("#dialogOverlay");
+        var dialogBox = $("#dialogBox");
+        dialogOverlay.css("display", "block");
+        dialogOverlay.css("height", winH + "px")
+        dialogBox.css("left", (winW/2) - (550 * .5) + "px")
+        dialogBox.css("top", "100px")
+        dialogBox.css("display", "block");
+        $("#dialogBoxHead").html("ATTENTION: ");
+        $("#dialogBoxBody").html(dialog)
+        $("#dialogBoxFoot").html('<button onclick="Alert.ok()">OK</button>');
     }
     this.ok = function() {
-        document.getElementById("dialogBox").style.display="none";
-        document.getElementById("dialogOverlay").style.display="none";
+        $("#dialogBox").css("display", "none")
+        $("#dialogOverlay").css("display", "none")
     }
 }
 var Alert = new CustomAlert();
+
+  $("#newAlert").on("click", function() {
+    Alert.render("This is a cool custom alerts box");
+  })
 
 // $("#tradAlert").on("click", alert("This is a boring alert box"));
 // $("#newAlert").on("click", Alert.render());
