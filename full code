@@ -21,6 +21,16 @@
       width: 550px;
       z-index: 10;
     }
+    #newAlert {
+    }
+
+    #okImage {
+      display: inline-flex;
+    }
+
+    #okDialog {
+      display: inline-flex;
+    }
 
 #dialogBox > div{background:#FFF; margin: 8px; }
 #dialogBox > div > #dialogBoxHead{ background: #666; font-size: 19px; 
@@ -31,7 +41,9 @@
   padding: 10px; text-align: right; }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 <body>
 <div id="dialogOverlay"></div>
 <div id="dialogBox">
@@ -41,10 +53,10 @@
     <div id="dialogBoxFoot"></div>
   </div>
 </div>
-  <h1 id="test">My web document content ... </h1>
-  <h2>My web document content ... </h2>
-   <button id="newAlert">This is a cool custom alert box</button>
+<h5>This is the new and improved alert box!</h5>
+   <button id="newAlert" class="waves-effect waves-teal btn">This is a cool custom alert box</button>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script type="text/javascript">
 function CustomAlert () {
     this.render = function(dialog) {
@@ -58,8 +70,8 @@ function CustomAlert () {
         dialogBox.css("top", "100px")
         dialogBox.css("display", "block");
         $("#dialogBoxHead").html("ATTENTION: ");
-        $("#dialogBoxBody").html(dialog)
-        $("#dialogBoxFoot").html('<button onclick="Alert.ok()">OK</button>');
+        $("#dialogBoxBody").html('<i id="okImage" class="small material-icons">info_outline</i>' + '<p id="okDialog"> &nbsp &nbsp &nbsp' + dialog + '</p>')
+        $("#dialogBoxFoot").html('<button class="waves-effect waves-light btn" onclick="Alert.ok()">OK</button>');
     }
     this.ok = function() {
         $("#dialogBox").css("display", "none")
