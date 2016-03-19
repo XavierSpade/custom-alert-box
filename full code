@@ -29,7 +29,7 @@
     }
 
     #okDialog {
-      display: inline-flex;
+      display: inline;
     }
 
 #dialogBox > div{background:#FFF; margin: 8px; }
